@@ -7,3 +7,7 @@
         display: block;
     }
 }
+
+#map {
+    height: 500px;
+}
