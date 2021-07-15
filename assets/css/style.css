@@ -1,0 +1,9 @@
+.hidden-mob {
+    display: none;
+}
+
+@media screen and ( min-width: 1200px ) {
+    .hidden-mob {
+        display: block;
+    }
+}
