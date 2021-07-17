@@ -3,11 +3,8 @@ const jobSearchBar = document.getElementById("search-bar")
 const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
 const searchResultsContainer = document.getElementById("search-results-container")
-
-const pastSearchesModal = document.getElementById("past-searches-container")
-const pastSearchesBtn = document.getElementById("past-searches-btn")
 const pastSearchesList = document.getElementById("past-searches-list")
-const closeBtn = document.getElementById("close-btn")
+
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -93,6 +90,7 @@ function addPastSearch(query) {
 function createButton(job, index) {
     const button = document.createElement("button");
     button.setAttribute("data-index", index);
+    button.setAttribute("class", "uk-button uk-button-secondary uk-width-1-1");
     button.textContent = job;
     button.addEventListener('click', getPastJobSearch);
     return button;
@@ -143,11 +141,3 @@ function getGeoCode (city) {
 displayPastSearches()
 
 searchForm.addEventListener("submit", submitForm)
-
-pastSearchesBtn.addEventListener("click", function() {
-    pastSearchesModal.style.display = "block";
-})
-
-closeBtn.addEventListener("click", function() { 
-    pastSearchesModal.style.display = "none"; 
-})
