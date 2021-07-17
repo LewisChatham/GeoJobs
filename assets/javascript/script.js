@@ -4,7 +4,10 @@ const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
 const searchResultsContainer = document.getElementById("search-results-container")
 const pastSearchesList = document.getElementById("past-searches-list")
+const toggleMapBtn = document.getElementById("toggle-map-btn");
+const mapContainer = document.getElementById("map-container");
 
+let mapVisible = false;
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -132,8 +135,6 @@ function getGeoCode (city) {
     })
     .then(function (data) {
         const {lat, lng} = data.items[0].position;
-        console.log(lat, lng)
-
         return {
             lat,
             lng
@@ -144,3 +145,14 @@ function getGeoCode (city) {
 displayPastSearches()
 
 searchForm.addEventListener("submit", submitForm)
+toggleMapBtn.addEventListener("click", function() {
+    if (mapVisible) {
+        mapContainer.classList.add("hidden-mob");
+        searchResultsContainer.classList.remove("hidden-mob");
+        mapVisible = false;
+    } else {
+        mapContainer.classList.remove("hidden-mob");
+        searchResultsContainer.classList.add("hidden-mob");
+        mapVisible = true;
+    }
+})
