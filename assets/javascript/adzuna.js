@@ -5,12 +5,6 @@ function fetchJobList(job, city, filters) {
             return response.json();
         })
         .then(function (data) {
-            const searchParameters = {
-                job: jobSearchBar.value,
-                city: citySearchBar.value 
-            }
-            addPastSearch(searchParameters);
             parseJobListData(data);
-            displayPastSearches();
         });  
 }

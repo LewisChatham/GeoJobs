@@ -57,7 +57,13 @@ function submitForm(event) {
     let city = citySearchBar.value
     let filters = getFilters()
     
+    const searchParameters = {
+        job: job,
+        city: city
+    }
     fetchJobList(job, city, filters)
+    addPastSearch(searchParameters);
+    displayPastSearches();
 }
 
 function getFilters() {
