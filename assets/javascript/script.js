@@ -3,6 +3,9 @@ const jobSearchBar = document.getElementById("search-bar")
 const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
 
+const pastSearchesModal = document.getElementById("past-searches-container")
+const pastSearchesBtn = document.getElementById("past-searches-btn")
+const closeBtn = document.getElementById("close-btn")
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -84,3 +87,11 @@ function addPastSearch(query) {
 }
 
 searchForm.addEventListener("submit", submitForm)
+
+pastSearchesBtn.addEventListener("click", function() {
+    pastSearchesModal.style.display = "block";
+})
+
+closeBtn.addEventListener("click", function() { 
+    pastSearchesModal.style.display = "none"; 
+})
