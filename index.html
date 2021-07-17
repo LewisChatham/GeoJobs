@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
     <title>GeoJobs</title>
 </head>
 <body>
 
-    <header>
+    <header uk-sticky>
         <h1>GeoJobs</h1>
     </header>
 
-    <section>
+    <section uk-sticky="offset: 50" id="form">
         <form id="searchForm" class="uk-flex uk-flex-around">
             <input type="text" placeholder="Search Job Role" id="search-bar" required>
             <input type="text" placeholder="Search Location" id="city-search-bar" required>
@@ -34,17 +38,18 @@
 
             </div>
         </div>
-    </div>
-    
-    <main class="uk-grid-match uk-grid-small" uk-grid>
+  </div>
+        
+    <main class="uk-flex uk-flex-between uk-flex-bottom">
         <div id="search-results-container" class="uk-width-2-3@l"></div>
-        <div id="map-container" class="uk-width-1-3@l hidden-mob"></div>
-    </main>
-    
-
-
+        <div id="map-container" class="uk-width-1-3@l hidden-mob">
+            <div id="map"></div>
+        </div>
+    </main> 
+  
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+    <script src="./assets/javascript/map.js"></script>
     <script src="./assets/javascript/adzuna.js"></script>
     <script src="./assets/javascript/script.js"></script>
 </body>

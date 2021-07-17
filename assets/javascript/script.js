@@ -51,12 +51,14 @@ function displaySearchedJobs(jobListArray) {
     }
 }
 
-function submitForm(event) {
+async function submitForm(event) {
+
     event.preventDefault()
-    let job = jobSearchBar.value
-    let city = citySearchBar.value
-    let filters = getFilters()
-    
+    const job = jobSearchBar.value
+    const city = citySearchBar.value
+    const filters = getFilters()
+    const {lat, lng} = await getGeoCode(city)
+    moveMap(map, lat, lng)
     fetchJobList(job, city, filters)
 }
 
@@ -93,7 +95,6 @@ function createButton(job, index) {
     button.setAttribute("data-index", index);
     button.textContent = job;
     button.addEventListener('click', getPastJobSearch);
-
     return button;
 } 
 
@@ -115,6 +116,28 @@ function getPastJobSearch(event) {
     const job = searches[index].job;
     const city = searches[index].city;
     fetchJobList(job, city);
+}
+
+function moveMap(map, lat, lng) {
+    map.setCenter({lat:lat, lng:lng});
+    map.setZoom(13);
+}
+
+function getGeoCode (city) {
+  const requestUrl = `https://geocode.search.hereapi.com/v1/geocode?q=${city}&apiKey=qvZeWsdAQvGnl_hbLJ0ttHuzIMdUifdobJGAWgi51ig`
+  return fetch(requestUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        const {lat, lng} = data.items[0].position;
+        console.log(lat, lng)
+
+        return {
+            lat,
+            lng
+        }
+    })
 }
 
 displayPastSearches()
