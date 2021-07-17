@@ -27,7 +27,9 @@ function parseJobListData(data) {
 // Creates a job card to display on page
 function createJobCard(jobData) {
     const card = document.createElement("div");
+    card.setAttribute("class", "uk-card uk-card-default uk-card-body")
     const title = document.createElement("p");
+    title.setAttribute("class", "uk-card-title");
     title.innerHTML = jobData.title;
     const company = document.createElement("p");
     company.innerHTML = `Company: ${jobData.company}`;
@@ -35,6 +37,7 @@ function createJobCard(jobData) {
     salary.innerHTML = `Salary: £${jobData.salary}`;
     const button = document.createElement("a");
     button.setAttribute("href", jobData.url);
+    button.setAttribute("class", "uk-button uk-button-primary")
     button.textContent = "Click for more info";
     card.append(title, company, salary, button);
     return card;

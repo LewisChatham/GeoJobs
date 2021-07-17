@@ -49,6 +49,10 @@ main {
     margin-top: 120px;
 }
 
+.uk-card {
+    margin: 10px 20px;
+}
+
 .uk-button-secondary {
     margin-bottom: 5px;
 }
