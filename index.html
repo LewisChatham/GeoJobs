@@ -10,26 +10,26 @@
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://kit.fontawesome.com/9303db13fa.js" crossorigin="anonymous"></script>
     <title>GeoJobs</title>
 </head>
 <body>
 
     <header uk-sticky>
-        <h1>GeoJobs</h1>
-    </header>
-
-    <section uk-sticky="offset: 50" id="form">
-        <form id="searchForm" class="uk-flex uk-flex-around">
-            <input type="text" placeholder="Search Job Role" id="search-bar" required>
-            <input type="text" placeholder="Search Location" id="city-search-bar" required>
-            <button type="submit" id="search">X</button>
-        </form>
-        <div class="uk-flex uk-flex-around">
-            <button type="button" id="past-searches-btn" class="">Past Searches</button>
-            <button type="button" id="filters-btn" class="">Filters</button>
-            <button type="button" id="toggle-map-btn" class="">Toggle Map</button>
+        <div>
+            <h1 class="uk-heading-small">GeoJobs</h1>
+                <form id="searchForm" class="uk-flex uk-flex-center">
+                <input type="text" placeholder="Search Job Role" id="search-bar" class="uk-input" required>
+                <input type="text" placeholder="Search Location" id="city-search-bar" class="uk-input" required>
+                <button type="submit" id="search" class="uk-button uk-button-default"><i class="fas fa-search"></i></button>
+            </form>
+            <div id="buttons-container" class="uk-flex uk-flex-around">
+                <button type="button" id="past-searches-btn" class="uk-button uk-button-primary">Past Searches</button>
+                <button type="button" id="filters-btn" class="uk-button uk-button-primary">Filters</button>
+                <button type="button" id="toggle-map-btn" class="uk-button uk-button-primary">Toggle Map</button>
+            </div>
         </div>
-    </section>
+    </header>
     
     <div id="past-searches-container" class="modal">
         <div id="past-searches">

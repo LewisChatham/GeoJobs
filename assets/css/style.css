@@ -1,5 +1,9 @@
+* {
+    background: inherit;
+}
+
 html {
-    font-size: 62.5%;
+    font-size: 100%;
 }
 
 body {
@@ -15,10 +19,25 @@ header {
     height: 5rem;
 }
 
+h1 {
+    text-align: center;
+    width: 100%;
+    z-index: 999;
+}
+
 #form {
-    
     background: white;
     height: 10rem;
+}
+
+#search-bar, #city-search-bar {
+    max-width: 500px;
+}
+
+#buttons-container {
+    padding: 10px 0px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 #map-container {
@@ -36,7 +55,7 @@ header {
     .hidden-mob {
         display: block;
     }
-}
+} 
 
 #past-searches-container {
     display: none;
@@ -65,7 +84,7 @@ header {
     font-size: 28px;
     font-weight: bold;
 }
-  
+
 #close-btn:hover,
 #close-btn:focus {
     color: black;
