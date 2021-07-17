@@ -1,12 +1,11 @@
- function moveMapToBerlin(map){
-  map.setCenter({lat:52.5159, lng:13.3777});
-  map.setZoom(14);
+ function moveMapToUk(map){
+  map.setCenter({lat:51.5074, lng:-0.12});
+  map.setZoom(13);
 }
 
 //Step 1: initialize communication with the platform
-// In your own code, replace variable window.apikey with your own apikey
 var platform = new H.service.Platform({
-  apikey: "OY6OVaViIdRlHSBuwI5hyklBoFZ-PHxO-zbU7y0iM8k"
+  apikey: "qvZeWsdAQvGnl_hbLJ0ttHuzIMdUifdobJGAWgi51ig"
 });
 var defaultLayers = platform.createDefaultLayers();
 
@@ -17,18 +16,16 @@ var map = new H.Map(document.getElementById('map'),
   zoom: 4,
   pixelRatio: window.devicePixelRatio || 1
 });
-// add a resize listener to make sure that the map occupies the whole container
-window.addEventListener('resize', () => map.getViewPort().resize());
+window.addEventListener('resize', () => map.getViewPort().resize()); // add a resize listener to make sure that the map occupies the whole container
 
-//Step 3: make the map interactive
+// Step 3: make the map interactive
 // MapEvents enables the event system
 // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-// Create the default UI components
-var ui = H.ui.UI.createDefault(map, defaultLayers);
+var ui = H.ui.UI.createDefault(map, defaultLayers); // Create the default UI components
 
 // Now use the map as required...
 window.onload = function () {
-  moveMapToBerlin(map);
+  moveMapToUk(map);
 }
