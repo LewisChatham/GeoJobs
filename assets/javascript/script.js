@@ -4,17 +4,6 @@ const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
 
 
-function fetchJobList(job, city, filters) {
-    const requestURL = `http://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=ab60a19a&app_key=4c8dd93a9e19f2fc2876eb639e148ef6&results_per_page=10&what=${job}&where=${city}&content-type=application/json`;
-    fetch(requestURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            parseJobListData(data);
-        });  
-}
-
 function parseJobListData(data) {
     let jobListArray = [];
     for (let i = 0; i < 10; i++) {
@@ -58,9 +47,6 @@ function displaySearchedJobs(jobListArray) {
     }
 }
 
-
- 
-
 function submitForm(event) {
     event.preventDefault()
     let job = jobSearchBar.value
@@ -76,7 +62,25 @@ function getFilters() {
     }
 }
 
+// Get past searches from local storage
+function getPastSearches() {
+    const searches = localStorage.getItem("searches");
+    if(!searches) {
+        return [];
+    }
+    const searchesParsed = JSON.parse(searches);
+    return searchesParsed;
+}
 
-
+// Add location to local storage
+function addPastSearch(query) {
+    const searches = getPastSearches();
+    if (searches.includes(query)){
+        return;
+    } else {
+        searches.push(query);
+    }
+    localStorage.setItem("searches", JSON.stringify(searches));
+}
 
 searchForm.addEventListener("submit", submitForm)
