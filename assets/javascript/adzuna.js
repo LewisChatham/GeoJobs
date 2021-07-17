@@ -5,6 +5,17 @@ function fetchJobList(job, city, filters) {
             return response.json();
         })
         .then(function (data) {
+            if (data.results.length == 0) {
+                searchResultsContainer.textContent = "Sorry: no results were found";
+                return;
+            }
+
+            const searchParameters = {
+                job: job,
+                city: city
+            }
+            addPastSearch(searchParameters);
+            displayPastSearches();
             parseJobListData(data);
         });  
 }

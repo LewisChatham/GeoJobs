@@ -2,6 +2,7 @@ const searchBtn = document.getElementById("search")
 const jobSearchBar = document.getElementById("search-bar")
 const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
+const searchResultsContainer = document.getElementById("search-results-container")
 
 const pastSearchesModal = document.getElementById("past-searches-container")
 const pastSearchesBtn = document.getElementById("past-searches-btn")
@@ -43,7 +44,6 @@ function createJobCard(jobData) {
 }
 
 function displaySearchedJobs(jobListArray) {
-    const searchResultsContainer = document.getElementById("search-results-container");
     searchResultsContainer.textContent = "";
     for (let i = 0; i < jobListArray.length; i++) {
         const jobCard = createJobCard(jobListArray[i]);
@@ -57,13 +57,7 @@ function submitForm(event) {
     let city = citySearchBar.value
     let filters = getFilters()
     
-    const searchParameters = {
-        job: job,
-        city: city
-    }
     fetchJobList(job, city, filters)
-    addPastSearch(searchParameters);
-    displayPastSearches();
 }
 
 function getFilters() {
