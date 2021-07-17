@@ -2,18 +2,12 @@ const searchBtn = document.getElementById("search")
 const jobSearchBar = document.getElementById("search-bar")
 const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
+const searchResultsContainer = document.getElementById("search-results-container")
 
-
-function fetchJobList(job, city, filters) {
-    const requestURL = `http://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=ab60a19a&app_key=4c8dd93a9e19f2fc2876eb639e148ef6&results_per_page=10&what=${job}&where=${city}&content-type=application/json`;
-    fetch(requestURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            parseJobListData(data);
-        });  
-}
+const pastSearchesModal = document.getElementById("past-searches-container")
+const pastSearchesBtn = document.getElementById("past-searches-btn")
+const pastSearchesList = document.getElementById("past-searches-list")
+const closeBtn = document.getElementById("close-btn")
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -50,7 +44,6 @@ function createJobCard(jobData) {
 }
 
 function displaySearchedJobs(jobListArray) {
-    const searchResultsContainer = document.getElementById("search-results-container");
     searchResultsContainer.textContent = "";
     for (let i = 0; i < jobListArray.length; i++) {
         const jobCard = createJobCard(jobListArray[i]);
@@ -58,10 +51,8 @@ function displaySearchedJobs(jobListArray) {
     }
 }
 
-
- 
-
 async function submitForm(event) {
+
     event.preventDefault()
     const job = jobSearchBar.value
     const city = citySearchBar.value
@@ -75,6 +66,56 @@ function getFilters() {
     return {
 
     }
+}
+
+// Get past searches from local storage
+function getPastSearches() {
+    const searches = localStorage.getItem("searches");
+    if(!searches) {
+        return [];
+    }
+    const searchesParsed = JSON.parse(searches);
+    return searchesParsed;
+}
+
+// Add location to local storage
+function addPastSearch(query) {
+    const searches = getPastSearches();
+    if(searches.some(search => search.job === query.job && search.city === query.city)){
+        return;
+    } else {
+        searches.push(query);
+    }
+    localStorage.setItem("searches", JSON.stringify(searches));
+}
+
+// Creates past search button
+function createButton(job, index) {
+    const button = document.createElement("button");
+    button.setAttribute("data-index", index);
+    button.textContent = job;
+    button.addEventListener('click', getPastJobSearch);
+    return button;
+} 
+
+// Display past searches in modal
+function displayPastSearches() {
+    const searches = getPastSearches();
+    pastSearchesList.textContent = "";
+    for (let i = 0; i < searches.length; i++) {
+        const pastSearch = createButton(searches[i].job, i);
+        pastSearchesList.appendChild(pastSearch);
+    }
+}
+
+// Get past job search when clicking past search in modal
+function getPastJobSearch(event) {
+    event.preventDefault();
+    const searches = getPastSearches();
+    const index = this.getAttribute("data-index");
+    const job = searches[index].job;
+    const city = searches[index].city;
+    fetchJobList(job, city);
 }
 
 function moveMap(map, lat, lng) {
@@ -99,5 +140,14 @@ function getGeoCode (city) {
     })
 }
 
+displayPastSearches()
 
 searchForm.addEventListener("submit", submitForm)
+
+pastSearchesBtn.addEventListener("click", function() {
+    pastSearchesModal.style.display = "block";
+})
+
+closeBtn.addEventListener("click", function() { 
+    pastSearchesModal.style.display = "none"; 
+})
