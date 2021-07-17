@@ -79,10 +79,12 @@ function getPastSearches() {
 // Add location to local storage
 function addPastSearch(query) {
     const searches = getPastSearches();
-    if (searches.includes(query)){
-        return;
-    } else {
-        searches.push(query);
+    for (let i=0; i < searches.length; i++) {
+        if (searches[i] === query){
+            return;
+        } else {
+            searches.push(query);
+        }
     }
     localStorage.setItem("searches", JSON.stringify(searches));
 }
