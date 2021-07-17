@@ -79,12 +79,10 @@ function getPastSearches() {
 // Add location to local storage
 function addPastSearch(query) {
     const searches = getPastSearches();
-    for (let i=0; i < searches.length; i++) {
-        if (searches[i] === query){
-            return;
-        } else {
-            searches.push(query);
-        }
+    if(searches.some(search => search.job === query.job && search.city === query.city)){
+        return;
+    } else {
+        searches.push(query);
     }
     localStorage.setItem("searches", JSON.stringify(searches));
 }
@@ -95,6 +93,7 @@ function createButton(job, index) {
     button.setAttribute("data-index", index);
     button.textContent = job;
     button.addEventListener('click', getPastJobSearch);
+
     return button;
 } 
 
