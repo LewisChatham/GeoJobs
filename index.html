@@ -17,11 +17,11 @@
     <header uk-sticky>
         <h1>GeoJobs</h1>
     </header>
-    
+
     <section uk-sticky="offset: 50" id="form">
-        <form class="uk-flex uk-flex-around">
-            <input type="text" placeholder="Search" id="search-bar">
-            <input type="text" placeholder="City" id="city-search-bar">
+        <form id="searchForm" class="uk-flex uk-flex-around">
+            <input type="text" placeholder="Search Job Role" id="search-bar" required>
+            <input type="text" placeholder="Search Location" id="city-search-bar" required>
             <button type="submit" id="search">X</button>
         </form>
         <div class="uk-flex uk-flex-around">
@@ -43,6 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
     <script src="./assets/javascript/map.js"></script>
+    <script src="./assets/javascript/adzuna.js"></script>
     <script src="./assets/javascript/script.js"></script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiuDYhaNJ4ByMwtZrNZl049lqemdXRrJc&callback=initMap">
 </script>
