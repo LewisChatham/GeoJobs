@@ -11,5 +11,6 @@ function fetchJobList(job, city, filters) {
             }
             addPastSearch(searchParameters);
             parseJobListData(data);
+            displayPastSearches();
         });  
 }
