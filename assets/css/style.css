@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Encode+Sans+SC:wght@500&display=swap');
+
 * {
     background: inherit;
+    font-family: 'Roboto', sans-serif;
 }
 
 html {
@@ -17,6 +20,10 @@ header {
 
 h1 {
     text-align: center;
+}
+
+.uk-heading-small {
+    font-family: 'Encode Sans SC', sans-serif;
 }
 
 #form {
