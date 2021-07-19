@@ -63,6 +63,8 @@ async function submitForm(event) {
     const {lat, lng} = await getGeoCode(city)
     moveMap(map, lat, lng)
     fetchJobList(job, city, filters)
+    jobSearchBar.value = "";
+    citySearchBar.value = "";
 }
 
 function getFilters() {
