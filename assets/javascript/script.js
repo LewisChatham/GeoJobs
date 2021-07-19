@@ -149,12 +149,12 @@ displayPastSearches()
 searchForm.addEventListener("submit", submitForm)
 toggleMapBtn.addEventListener("click", function() {
     if (mapVisible) {
-        mapContainer.classList.add("hidden-mob");
-        searchResultsContainer.classList.remove("hidden-mob");
+        mapContainer.classList.add("hidden");
+        searchResultsContainer.classList.remove("hidden");
         mapVisible = false;
     } else {
-        mapContainer.classList.remove("hidden-mob");
-        searchResultsContainer.classList.add("hidden-mob");
+        mapContainer.classList.remove("hidden");
+        searchResultsContainer.classList.add("hidden");
         mapVisible = true;
     }
 })
