@@ -11,14 +11,22 @@ const sortBySelector = document.getElementById("sort-by");
 const distanceSelector = document.getElementById("distance");
 const fullTimeSelector = document.getElementById("full-time");
 const partTimeSelector = document.getElementById("part-time");
+const fpSelector = document.getElementById("fp-either");
 const permanentSelector = document.getElementById("permanent");
 const contractSelector = document.getElementById("contract");
+const pcSelector = document.getElementById("pc-either");
 const filtersSubmitBtn = document.getElementById("filters-submit");
 
 let mapVisible = false;
 let filtersObj = {
     sortBy: "relevance",
     distance: "5",
+    fullTime: false,
+    partTime: false,
+    eitherFP: true,
+    permanent: false,
+    contract: false, 
+    eitherPC: true
 };
 
 function parseJobListData(data) {
@@ -83,30 +91,22 @@ function getFilters() {
     event.preventDefault();
     const sortBy = sortBySelector.value;
     const distance = distanceSelector.value;
-    let fullTime;
-    let partTime;
-    let permanent;
-    let contract;
-    if (fullTimeSelector.checked) {
-        fullTime = "1";
-    } 
-    if (partTimeSelector.checked) {
-        partTime = "1";
-    }
-    if (permanentSelector.checked) {
-        permanent = "1";
-    } 
-    if (contractSelector.checked) {
-        contract = "1";
-    }
+    let fullTime = fullTimeSelector.checked;
+    let partTime = partTimeSelector.checked;
+    let eitherFP = fpSelector.checked;
+    let permanent = permanentSelector.checked;
+    let contract = contractSelector.checked;
+    let eitherPC = pcSelector.checked;
     
     filtersObj = {
         sortBy: sortBy,
         distance: distance,
         fullTime: fullTime,
         partTime: partTime,
+        eitherFP: eitherFP,
         permanent: permanent,
         contract: contract,
+        eitherPC: eitherPC
     }
 }
 
@@ -131,6 +131,39 @@ function addPastSearch(query) {
     localStorage.setItem("searches", JSON.stringify(searches));
 }
 
+// Creates tooltip for search button
+function createDropdown(query, index) {
+    const dropdown = document.createElement("div");
+    dropdown.setAttribute("uk-dropdown", "")
+    dropdown.setAttribute("data-index", index);
+
+    const distance = document.createElement("p");
+    const sortBy = document.createElement("p");
+    distance.textContent = `Distance: ${query.filters.distance}km`;
+    sortBy.textContent = `Sort by: ${query.filters.sortBy}`;
+
+    const fullOrPartTime = document.createElement("p");
+    if (query.filters.fullTime) {
+        fullOrPartTime.textContent = "Full-time";
+    } else if (query.filters.partTime) {
+        fullOrPartTime.textContent = "Part-time";
+    } else if (query.filters.eitherFP) {
+        fullOrPartTime.textContent = "Full or part-time";
+    }
+
+    const permanentOrContract = document.createElement("p");;
+    if (query.filters.permanent) {
+        permanentOrContract.textContent = "Permanent";
+    } else if (query.filters.contract) {
+        permanentOrContract.textContent = "Contract";
+    } else if (query.filters.eitherPC) {
+        permanentOrContract.textContent = "Permanent or contract";
+    }
+    
+    dropdown.append(distance, sortBy, fullOrPartTime, permanentOrContract)
+    return dropdown;
+}
+
 // Creates past search button
 function createButton(query, index) {
     const button = document.createElement("button");
@@ -147,7 +180,8 @@ function displayPastSearches() {
     pastSearchesList.textContent = "";
     for (let i = 0; i < searches.length; i++) {
         const pastSearch = createButton(searches[i], i);
-        pastSearchesList.appendChild(pastSearch);
+        const pastSearchHover = createDropdown(searches[i], i);
+        pastSearchesList.append(pastSearch, pastSearchHover);
     }
 }
 

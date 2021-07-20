@@ -1,14 +1,14 @@
 function validateRequestURL(job, city, filters) {
     let fullOrPartTime = "";
     let contractOrPermanent = "";
-    if (filters.fullTime == "1") {
+    if (filters.fullTime == true) {
         fullOrPartTime = '&full_time="1"';
-    } else if (filters.partTime == "1") {
+    } else if (filters.partTime == true) {
         fullOrPartTime = '&part_time="1"';
     } 
-    if (filters.permanent == "1") {
+    if (filters.permanent == true) {
         contractOrPermanent = '&permanent="1"';
-    } else if (filters.contract == "1") {
+    } else if (filters.contract == true) {
         contractOrPermanent = '&contract="1"';
     }
     
