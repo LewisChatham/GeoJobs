@@ -45,7 +45,7 @@ function fetchJobList(job, city, filters) {
             const searchParameters = {
                 job: job,
                 city: city,
-                amount: data.results.length
+                amount: data.results.length,
                 filters: filters
             }
             addDescription(searchParameters);
