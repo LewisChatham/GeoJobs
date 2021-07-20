@@ -190,13 +190,15 @@ function displayPastSearches() {
 }
 
 // Get past job search when clicking past search in modal
-function getPastJobSearch(event) {
+async function getPastJobSearch(event) {
     event.preventDefault();
     const searches = getPastSearches();
     const index = this.getAttribute("data-index");
     const job = searches[index].job;
     const city = searches[index].city;
     const filters = searches[index].filters;
+    const {lat, lng} = await getGeoCode(city)
+    moveMap(map, lat, lng);
     fetchJobList(job, city, filters);
 }
 
