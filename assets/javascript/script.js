@@ -60,7 +60,7 @@ function createJobCard(jobData) {
     salary.innerHTML = `Salary: £${jobData.salary}`;
     const button = document.createElement("a");
     button.setAttribute("href", jobData.url);
-    button.setAttribute("class", "uk-button uk-button-primary")
+    button.setAttribute("class", "uk-button uk-button-primary secondary-btn")
     button.textContent = "Click for more info";
     card.append(title, company, salary, button);
     return card;
@@ -72,6 +72,17 @@ function displaySearchedJobs(jobListArray) {
         const jobCard = createJobCard(jobListArray[i]);
         searchResultsContainer.appendChild(jobCard);
     }
+}
+
+function addDescription(searchParams) {
+    const searchDescCont = document.getElementById("searchDescCont")
+    const searchAmountCont  = document.getElementById("searchAmountCont")
+    const description = document.createElement("p")
+    description.textContent = `Showing ${searchParams.job} jobs in ${searchParams.city}`
+    const amount = document.createElement("p")
+    amount.textContent = `${searchParams.amount} results`
+    searchDescCont.appendChild(description)
+    searchAmountCont.appendChild(amount)
 }
 
 async function submitForm(event) {
