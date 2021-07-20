@@ -125,7 +125,7 @@ function getPastSearches() {
 // Add location to local storage
 function addPastSearch(query) {
     const searches = getPastSearches();
-    if(searches.some(search => search.job === query.job && search.city === query.city)){
+    if(searches.some(search => search.job === query.job && search.city === query.city && JSON.stringify(search.filters) == JSON.stringify(query.filters))){
         return;
     } else {
         searches.push(query);
