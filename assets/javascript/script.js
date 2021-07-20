@@ -3,11 +3,11 @@ const jobSearchBar = document.getElementById("search-bar")
 const citySearchBar = document.getElementById("city-search-bar")
 const searchForm = document.getElementById("searchForm")
 const searchResultsContainer = document.getElementById("search-results-container")
-
-const pastSearchesModal = document.getElementById("past-searches-container")
-const pastSearchesBtn = document.getElementById("past-searches-btn")
 const pastSearchesList = document.getElementById("past-searches-list")
-const closeBtn = document.getElementById("close-btn")
+const toggleMapBtn = document.getElementById("toggle-map-btn");
+const mapContainer = document.getElementById("map-container");
+
+let mapVisible = false;
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -30,7 +30,9 @@ function parseJobListData(data) {
 // Creates a job card to display on page
 function createJobCard(jobData) {
     const card = document.createElement("div");
+    card.setAttribute("class", "uk-card uk-card-default uk-card-body")
     const title = document.createElement("p");
+    title.setAttribute("class", "uk-card-title");
     title.innerHTML = jobData.title;
     const company = document.createElement("p");
     company.innerHTML = `Company: ${jobData.company}`;
@@ -38,6 +40,7 @@ function createJobCard(jobData) {
     salary.innerHTML = `Salary: £${jobData.salary}`;
     const button = document.createElement("a");
     button.setAttribute("href", jobData.url);
+    button.setAttribute("class", "uk-button uk-button-primary")
     button.textContent = "Click for more info";
     card.append(title, company, salary, button);
     return card;
@@ -60,6 +63,8 @@ async function submitForm(event) {
     const {lat, lng} = await getGeoCode(city)
     moveMap(map, lat, lng)
     fetchJobList(job, city, filters)
+    jobSearchBar.value = "";
+    citySearchBar.value = "";
 }
 
 function getFilters() {
@@ -93,6 +98,7 @@ function addPastSearch(query) {
 function createButton(job, index) {
     const button = document.createElement("button");
     button.setAttribute("data-index", index);
+    button.setAttribute("class", "uk-button uk-button-secondary uk-width-1-1");
     button.textContent = job;
     button.addEventListener('click', getPastJobSearch);
     return button;
@@ -131,8 +137,6 @@ function getGeoCode (city) {
     })
     .then(function (data) {
         const {lat, lng} = data.items[0].position;
-        console.log(lat, lng)
-
         return {
             lat,
             lng
@@ -143,11 +147,14 @@ function getGeoCode (city) {
 displayPastSearches()
 
 searchForm.addEventListener("submit", submitForm)
-
-pastSearchesBtn.addEventListener("click", function() {
-    pastSearchesModal.style.display = "block";
-})
-
-closeBtn.addEventListener("click", function() { 
-    pastSearchesModal.style.display = "none"; 
+toggleMapBtn.addEventListener("click", function() {
+    if (mapVisible) {
+        mapContainer.classList.add("hidden");
+        searchResultsContainer.classList.remove("hidden");
+        mapVisible = false;
+    } else {
+        mapContainer.classList.remove("hidden");
+        searchResultsContainer.classList.add("hidden");
+        mapVisible = true;
+    }
 })
