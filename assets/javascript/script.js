@@ -18,16 +18,14 @@ const filtersSubmitBtn = document.getElementById("filters-submit");
 let mapVisible = false;
 let filtersObj = {
     sortBy: "relevance",
-    distance: 5,
-    fullTime: 1,
-    partTime: "0",
+    distance: "5",
+    fullTime: "1",
     permanent: "1",
-    contract: 0,
 };
 
 function parseJobListData(data) {
     let jobListArray = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < data.results.length; i++) {
         const listing = data.results[i];
 
         const title = listing.title;
@@ -92,20 +90,16 @@ function getFilters() {
     let permanent;
     let contract;
     if (fullTimeSelector.checked) {
-        fullTime = 1;
-        partTime = 0;
+        fullTime = "1";
     } 
     if (partTimeSelector.checked) {
-        fullTime = 0;
-        partTime = 1;
+        partTime = "1";
     }
     if (permanentSelector.checked) {
-        permanent = 1;
-        contract = 0;
+        permanent = "1";
     } 
     if (contractSelector.checked) {
-        permanent = 0;
-        contract = 1;
+        contract = "1";
     }
     
     filtersObj = {
