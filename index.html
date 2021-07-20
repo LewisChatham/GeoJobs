@@ -24,11 +24,38 @@
                 <input type="text" placeholder="Location" id="city-search-bar" class="uk-input search" required>
                 <button type="submit" id="search" class="uk-button uk-button-default"><i class="fas fa-search"></i></button>
             </form>
-        </div>
+          </div>
         <div id="buttons-container" class="uk-flex uk-flex-between uk-flex-middle">
             <div class="button-wrapper">
                 <button uk-toggle="target: #past-searches-container" type="button" class="uk-button uk-button-primary main-btn">Past Searches</button>
                 <button type="button" id="filters-btn" class="uk-button uk-button-primary main-btn">Filters</button>
+                <div uk-dropdown>
+                    <form>
+                        <label for="sort-by" class="uk-form-label">Sort by</label>
+                        <select id="sort-by" name="sort-by" class="uk-select">
+                            <option value="relevance">Relevance</option>
+                            <option value="date">Date</option>
+                            <option value="salary">Salary</option>
+                        </select>
+                        <label for="distance" class="uk-form-label">Distance</label>
+                        <select id="distance" name="distance" class="uk-select">
+                            <option value="5">5km</option>
+                            <option value="10">10km</option>
+                            <option value="15">15km</option>
+                            <option value="20">20km</option>
+                        </select>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input id="full-time" class="uk-radio" name="full-part" type="radio"> Full-time</label>
+                            <label><input id="part-time" class="uk-radio" name="full-part" type="radio"> Part-time</label>
+                            <label><input id="fp-either" class="uk-radio" name="full-part" type="radio" checked> Either</label>
+                        </div>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input id="permanent" class="uk-radio" name="perm-cont" type="radio"> Permanent</label>
+                            <label><input id="contract" class="uk-radio" name="perm-cont" type="radio"> Contract</label>
+                            <label><input id="pc-either" class="uk-radio" name="perm-cont" type="radio" checked> Either</label>
+                        </div>
+                        <button type="submit" id="filters-submit" class="uk-button uk-button-default">Save</button>
+                    </form>
             </div>
             <button type="button" id="toggle-map-btn" class="uk-button uk-button-primary main-btn mob-only">Toggle Map</button>
         </div>
