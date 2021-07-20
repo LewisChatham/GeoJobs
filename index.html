@@ -42,12 +42,12 @@
                             <option value="20">20km</option>
                         </select>
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" checked> Full-time</label>
-                            <label><input class="uk-checkbox" type="checkbox"> Part-time</label>
+                            <label><input id="full-time" class="uk-radio" name="full-part" type="radio" checked> Full-time</label>
+                            <label><input id="part-time" class="uk-radio" name="full-part" type="radio"> Part-time</label>
                         </div>
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" checked> Permanent</label>
-                            <label><input class="uk-checkbox" type="checkbox"> Contract</label>
+                            <label><input id="permanent" class="uk-radio" name="perm-cont" type="radio" checked> Permanent</label>
+                            <label><input id="contract" class="uk-radio" name="perm-cont" type="radio"> Contract</label>
                         </div>
                         <button type="submit" id="filters-submit" class="uk-button uk-button-default">Save</button>
                     </form>

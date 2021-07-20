@@ -7,6 +7,14 @@ const pastSearchesList = document.getElementById("past-searches-list")
 const toggleMapBtn = document.getElementById("toggle-map-btn");
 const mapContainer = document.getElementById("map-container");
 
+const sortBySelector = document.getElementById("sort-by");
+const distanceSelector = document.getElementById("distance");
+const fullTimeSelector = document.getElementById("full-time");
+const partTimeSelector = document.getElementById("part-time");
+const permanentSelector = document.getElementById("permanent");
+const contractSelector = document.getElementById("contract");
+const filtersSubmitBtn = document.getElementById("filters-submit");
+
 let mapVisible = false;
 
 function parseJobListData(data) {
@@ -68,8 +76,36 @@ async function submitForm(event) {
 }
 
 function getFilters() {
+    const sortBy = sortBySelector.value;
+    const distance = distanceSelector.value;
+    let fullTime;
+    let partTime;
+    let permanent;
+    let contract;
+    if (fullTimeSelector.checked) {
+        fullTime = 1;
+        partTime = 0;
+    } 
+    if (partTimeSelector.checked) {
+        fullTime = 0;
+        partTime = 1;
+    }
+    if (permanentSelector.checked) {
+        permanent = 1;
+        contract = 0;
+    } 
+    if (contractSelector.checked) {
+        permanent = 0;
+        contract = 1;
+    }
+    
     return {
-
+        sortBy: sortBy,
+        distance: distance,
+        fullTime: fullTime,
+        partTime: partTime,
+        permanent: permanent,
+        contract: contract,
     }
 }
 
