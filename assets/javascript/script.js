@@ -134,11 +134,11 @@ function addPastSearch(query) {
 }
 
 // Creates past search button
-function createButton(job, index) {
+function createButton(query, index) {
     const button = document.createElement("button");
     button.setAttribute("data-index", index);
     button.setAttribute("class", "uk-button uk-button-secondary uk-width-1-1");
-    button.textContent = job;
+    button.textContent = `${query.job}, ${query.city}`;
     button.addEventListener('click', getPastJobSearch);
     return button;
 } 
@@ -148,7 +148,7 @@ function displayPastSearches() {
     const searches = getPastSearches();
     pastSearchesList.textContent = "";
     for (let i = 0; i < searches.length; i++) {
-        const pastSearch = createButton(searches[i].job, i);
+        const pastSearch = createButton(searches[i], i);
         pastSearchesList.appendChild(pastSearch);
     }
 }
@@ -160,7 +160,8 @@ function getPastJobSearch(event) {
     const index = this.getAttribute("data-index");
     const job = searches[index].job;
     const city = searches[index].city;
-    fetchJobList(job, city);
+    const filters = searches[index].filters;
+    fetchJobList(job, city, filters);
 }
 
 function moveMap(map, lat, lng) {
