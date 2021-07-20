@@ -16,6 +16,14 @@ const contractSelector = document.getElementById("contract");
 const filtersSubmitBtn = document.getElementById("filters-submit");
 
 let mapVisible = false;
+let filtersObj = {
+    sortBy: "relevance",
+    distance: 5,
+    fullTime: 1,
+    partTime: "0",
+    permanent: "1",
+    contract: 0,
+};
 
 function parseJobListData(data) {
     let jobListArray = [];
@@ -24,7 +32,7 @@ function parseJobListData(data) {
 
         const title = listing.title;
         const company = listing.company.display_name;
-        const salary = listing.salary_min;
+        const salary = listing.salary_max;
         const url = listing.redirect_url;
 
         const jobData = {title: title, company: company, salary: salary, url: url};
@@ -67,7 +75,7 @@ async function submitForm(event) {
     event.preventDefault()
     const job = jobSearchBar.value
     const city = citySearchBar.value
-    const filters = getFilters()
+    const filters = filtersObj;
     const {lat, lng} = await getGeoCode(city)
     moveMap(map, lat, lng)
     fetchJobList(job, city, filters)
@@ -76,6 +84,7 @@ async function submitForm(event) {
 }
 
 function getFilters() {
+    event.preventDefault();
     const sortBy = sortBySelector.value;
     const distance = distanceSelector.value;
     let fullTime;
@@ -99,7 +108,7 @@ function getFilters() {
         contract = 1;
     }
     
-    return {
+    filtersObj = {
         sortBy: sortBy,
         distance: distance,
         fullTime: fullTime,
@@ -183,6 +192,7 @@ function getGeoCode (city) {
 displayPastSearches()
 
 searchForm.addEventListener("submit", submitForm)
+filtersSubmitBtn.addEventListener("click", getFilters)
 toggleMapBtn.addEventListener("click", function() {
     if (mapVisible) {
         mapContainer.classList.add("hidden");
