@@ -26,6 +26,31 @@
             <div id="buttons-container" class="uk-flex uk-flex-around">
                 <button uk-toggle="target: #past-searches-container" type="button" class="uk-button uk-button-primary">Past Searches</button>
                 <button type="button" id="filters-btn" class="uk-button uk-button-primary">Filters</button>
+                <div uk-dropdown="mode: click">
+                    <form>
+                        <label for="sort-by" class="uk-form-label">Sort by</label>
+                        <select id="sort-by" name="sort-by" class="uk-select">
+                            <option>Relevance</option>
+                            <option>Date</option>
+                            <option>Salary</option>
+                        </select>
+                        <label for="distance" class="uk-form-label">Distance</label>
+                        <select id="distance" name="distance" class="uk-select">
+                            <option>5km</option>
+                            <option>10km</option>
+                            <option>15km</option>
+                            <option>20km</option>
+                        </select>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" checked> Full-time</label>
+                            <label><input class="uk-checkbox" type="checkbox"> Part-time</label>
+                        </div>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" checked> Permanent</label>
+                            <label><input class="uk-checkbox" type="checkbox"> Contract</label>
+                        </div>
+                    </form>
+                </div>
                 <button type="button" id="toggle-map-btn" class="uk-button uk-button-primary">Toggle Map</button>
             </div>
         </div>
