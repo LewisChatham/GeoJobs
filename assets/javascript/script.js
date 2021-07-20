@@ -131,6 +131,9 @@ function addPastSearch(query) {
     localStorage.setItem("searches", JSON.stringify(searches));
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 // Creates tooltip for search button
 function createDropdown(query, index) {
     const dropdown = document.createElement("div");
@@ -139,8 +142,9 @@ function createDropdown(query, index) {
 
     const distance = document.createElement("p");
     const sortBy = document.createElement("p");
+    sortByCapitalized = capitalizeFirstLetter(query.filters.sortBy)
     distance.textContent = `Distance: ${query.filters.distance}km`;
-    sortBy.textContent = `Sort by: ${query.filters.sortBy}`;
+    sortBy.textContent = `Sort by: ${sortByCapitalized}`;
 
     const fullOrPartTime = document.createElement("p");
     if (query.filters.fullTime) {
