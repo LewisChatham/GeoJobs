@@ -19,8 +19,6 @@ let mapVisible = false;
 let filtersObj = {
     sortBy: "relevance",
     distance: "5",
-    fullTime: "1",
-    permanent: "1",
 };
 
 function parseJobListData(data) {
@@ -199,3 +197,4 @@ toggleMapBtn.addEventListener("click", function() {
         mapVisible = true;
     }
 })
+
