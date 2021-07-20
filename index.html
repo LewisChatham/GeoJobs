@@ -30,16 +30,16 @@
                     <form>
                         <label for="sort-by" class="uk-form-label">Sort by</label>
                         <select id="sort-by" name="sort-by" class="uk-select">
-                            <option>Relevance</option>
-                            <option>Date</option>
-                            <option>Salary</option>
+                            <option value="relevance">Relevance</option>
+                            <option value="date">Date</option>
+                            <option value="salary">Salary</option>
                         </select>
                         <label for="distance" class="uk-form-label">Distance</label>
                         <select id="distance" name="distance" class="uk-select">
-                            <option>5km</option>
-                            <option>10km</option>
-                            <option>15km</option>
-                            <option>20km</option>
+                            <option value="5">5km</option>
+                            <option value="10">10km</option>
+                            <option value="15">15km</option>
+                            <option value="20">20km</option>
                         </select>
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                             <label><input class="uk-checkbox" type="checkbox" checked> Full-time</label>
@@ -49,6 +49,7 @@
                             <label><input class="uk-checkbox" type="checkbox" checked> Permanent</label>
                             <label><input class="uk-checkbox" type="checkbox"> Contract</label>
                         </div>
+                        <button type="submit" id="filters-submit" class="uk-button uk-button-default">Save</button>
                     </form>
                 </div>
                 <button type="button" id="toggle-map-btn" class="uk-button uk-button-primary">Toggle Map</button>
