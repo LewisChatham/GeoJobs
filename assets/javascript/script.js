@@ -126,7 +126,7 @@ function addPastSearch(query) {
     if(searches.some(search => search.job === query.job && search.city === query.city && JSON.stringify(search.filters) == JSON.stringify(query.filters))){
         return;
     } else {
-        searches.push(query);
+        searches.unshift(query);
     }
     localStorage.setItem("searches", JSON.stringify(searches));
 }
