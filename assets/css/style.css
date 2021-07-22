@@ -173,7 +173,51 @@ main {
     font-weight: 700;
 }
 
+#past-searches-list button {
+    margin-right: 4rem;
+    margin-bottom: 1rem;
+    background: var(--primary);
+    color: var(--dark);
+    border: 1px solid var(--light);
+    text-transform: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    border-radius: .5rem;
+}
 
+
+.uk-dropdown form label {
+    font-size: 1.4rem;
+}
+
+.uk-dropdown form select {
+    margin: 1rem 0;
+    border-radius: 10rem;
+    font-size: 1.4rem;
+    color: var(--dark);
+}
+
+.uk-dropdown form select>option {
+    color: var(--dark) !important;
+}
+
+.uk-dropdown form button {
+    margin-right: 4rem;
+    margin-bottom: 1rem;
+    background: white;
+    color: var(--dark);
+    border: 1px solid var(--light);
+    text-transform: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    border-radius: .5rem;
+}
+
+.uk-dropdown form button:hover {
+    background: var(--primary);
+    border: none;
+    padding: 1px 31px;
+}
 
 @media screen and ( min-width: 1200px ) {
     .hidden-mob {
