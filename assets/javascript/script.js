@@ -20,6 +20,8 @@ const pcSelector = document.getElementById("pc-either");
 const filtersSubmitBtn = document.getElementById("filters-submit");
 
 let mapVisible = false;
+let mapCircle = false; 
+
 let filtersObj = {
     sortBy: "relevance",
     distance: "5",
@@ -93,7 +95,9 @@ async function submitForm(event) {
     const city = citySearchBar.value
     const filters = filtersObj;
     const {lat, lng} = await getGeoCode(city)
-    moveMap(map, lat, lng)
+    const radius = filters.distance * 1000;
+    moveMap(map, lat, lng, radius);
+    createCircle(map, lat, lng, radius);
     fetchJobList(job, city, filters)
     jobSearchBar.value = "";
     citySearchBar.value = "";
@@ -211,13 +215,46 @@ async function getPastJobSearch(event) {
     const city = searches[index].city;
     const filters = searches[index].filters;
     const {lat, lng} = await getGeoCode(city)
-    moveMap(map, lat, lng);
+    const radius = filters.distance * 1000;
+    moveMap(map, lat, lng, radius);
+    createCircle(map, lat, lng, radius);
     fetchJobList(job, city, filters);
 }
 
-function moveMap(map, lat, lng) {
+function createCircle(map, lat, lng, radius) {
+    if (mapCircle) {
+        map.removeObject(mapCircle);
+    }
+    mapCircle = new H.map.Circle(
+        new H.geo.Point(lat, lng), 
+        radius, 
+        {
+            style: {
+              strokeColor: '#3C3C3B', // Color of the perimeter
+              lineWidth: 2,
+              fillColor: 'rgba(49, 248, 195, 0.2)'  // Color of the circle
+            }
+          }
+    );
+    map.addObject(mapCircle);
+}
+
+function getMapZoom(radius) {
+    if (radius <= 5000) {
+        return 13;
+    } else if (radius <= 10000) {
+        return 12;
+    } else if (radius <= 15000) {
+        return 11;
+    } else if (radius <= 20000) {
+        return 10.5;
+    }
+}
+
+function moveMap(map, lat, lng, radius) {
+    let zoom = getMapZoom(radius)
     map.setCenter({lat:lat, lng:lng});
-    map.setZoom(13);
+    map.setZoom(zoom);
 }
 
 function getGeoCode (city) {
