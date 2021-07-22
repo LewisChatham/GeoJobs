@@ -204,6 +204,7 @@ function displayPastSearches() {
 // Get past job search when clicking past search in modal
 async function getPastJobSearch(event) {
     event.preventDefault();
+    UIkit.modal("#past-searches-container").hide();
     const searches = getPastSearches();
     const index = this.getAttribute("data-index");
     const job = searches[index].job;
