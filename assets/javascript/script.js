@@ -6,6 +6,8 @@ const searchResultsContainer = document.getElementById("search-results-container
 const pastSearchesList = document.getElementById("past-searches-list")
 const toggleMapBtn = document.getElementById("toggle-map-btn");
 const mapContainer = document.getElementById("map-container");
+const searchDescCont = document.getElementById("searchDescCont");
+const searchAmountCont  = document.getElementById("searchAmountCont");
 
 const sortBySelector = document.getElementById("sort-by");
 const distanceSelector = document.getElementById("distance");
@@ -75,8 +77,8 @@ function displaySearchedJobs(jobListArray) {
 }
 
 function addDescription(searchParams) {
-    const searchDescCont = document.getElementById("searchDescCont")
-    const searchAmountCont  = document.getElementById("searchAmountCont")
+    searchDescCont.textContent = "";
+    searchAmountCont.textContent = "";
     const description = document.createElement("p")
     description.textContent = `Showing ${searchParams.job} jobs in ${searchParams.city}`
     const amount = document.createElement("p")
@@ -86,7 +88,6 @@ function addDescription(searchParams) {
 }
 
 async function submitForm(event) {
-
     event.preventDefault()
     const job = jobSearchBar.value
     const city = citySearchBar.value
@@ -98,7 +99,7 @@ async function submitForm(event) {
     citySearchBar.value = "";
 }
 
-function getFilters() {
+function getFilters(event) {
     event.preventDefault();
     const sortBy = sortBySelector.value;
     const distance = distanceSelector.value;
