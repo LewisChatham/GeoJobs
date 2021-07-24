@@ -23,7 +23,7 @@
                 <input type="text" placeholder="Location" id="city-search-bar" class="uk-input search" required>
                 <button type="submit" id="search" class="uk-button uk-button-default"><i class="fas fa-search"></i></button>
             </form>
-          </div>
+        </div>
         <div id="buttons-container" class="uk-flex uk-flex-between uk-flex-middle">
             <div class="button-wrapper">
                 <button uk-toggle="target: #past-searches-container" type="button" class="uk-button uk-button-primary main-btn">Past Searches</button>
@@ -56,7 +56,6 @@
                         <button type="submit" id="filters-submit" class="uk-button uk-button-default">Save</button>
                     </form>
                 </div>
-            <button type="button" id="toggle-map-btn" class="uk-button uk-button-primary main-btn mob-only">Toggle Map</button>
             </div>
         </div>
     </header>
@@ -88,8 +87,9 @@
         <div id="map-container" class="uk-width-2-3@l hidden hidden-mob">
             <div id="map"></div>
         </div>
+        <button type="button" id="toggle-map-btn" class="uk-button uk-button-default mob-only"><i class="fas fa-map-marked-alt"></i></button>
     </main> 
-  
+    
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
     <script src="./flash/flashjs-master/dist/flash.min.js"></script>

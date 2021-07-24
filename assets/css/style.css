@@ -24,10 +24,7 @@ body {
 }
 
 h1.title {
-    margin-right: 50rem;
-    margin-left: 10rem;
-    margin-bottom: 0;
-    font-weight: 700;
+    margin: 0 0 1rem 0;
 }
 
 header {
@@ -37,12 +34,13 @@ header {
 }
 
 #nav {
-    height: 8rem;
-    border-bottom: var(--light) 1px solid;
+    height: 12rem;
+    flex-direction: column;
 }
 
 .search {
-    width: 20rem;
+    width: 40vw;
+    max-width: 20rem;
     height: 5rem;
     font-size: 1.4rem;
     border-color: var(--light);
@@ -106,11 +104,11 @@ i {
 }
 
 .button-wrapper {
-    margin-left: 4rem;
+    margin: auto;
 }
 
 .main-btn {
-    margin-right: 4rem;
+    margin-right: 1rem;
     background: white;
     color: var(--dark);
     border: 1px solid var(--light);
@@ -147,8 +145,19 @@ i {
     height: 100vh;
 }
 
+#toggle-map-btn {
+    position: fixed;
+    right: 1rem;
+    bottom: 2rem;
+    background: var(--primary);
+    border-radius: 100%;
+    padding: 0;
+    height: 6rem;
+    width: 6rem;
+}
+
 main {
-    margin-top: 10rem;
+    margin-top: 13rem;
 }
 
 .uk-card {
@@ -220,6 +229,10 @@ main {
 }
 
 @media screen and ( min-width: 1200px ) {
+    main {
+        margin-top: 10rem;
+    }
+    
     .hidden-mob {
         display: block;
     }
@@ -227,25 +240,23 @@ main {
     .mob-only {
         display: none;
     }
-} 
-
-@media screen and ( max-width: 1200px ) {
-    #nav {
-        height: 12rem;
-        flex-direction: column;
-    }
 
     h1.title {
-        margin: 0 0 1rem 0;
+        margin: 0 50rem 0 10rem;
+        font-weight: 700;
     }
-}
 
-@media screen and ( max-width: 800px ) {
+    #nav {
+        height: 8rem;
+        border-bottom: var(--light) 1px solid;
+        flex-direction: row;
+    }
+
     .button-wrapper {
-        margin-left: 1rem;
+        margin-left: 4rem;
     }
     
     .main-btn {
-        margin-right: 1rem;
+        margin-right: 4rem;
     }
-}
+} 
